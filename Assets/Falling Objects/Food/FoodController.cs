@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public int Value;
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            ScoreCounter.Instance.IncreaseScore(Value);
+        }
+        Destroy(gameObject);
     }
 }
+    
