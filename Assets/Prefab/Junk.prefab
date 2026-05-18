@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b982844d6b041f489c80cfc5da25d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JunkController
+  junkDamage: 1
 --- !u!212 &6739566370563266538
 SpriteRenderer:
   serializedVersion: 2

@@ -7,11 +7,8 @@ public class FoodController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
             ScoreCounter.Instance.IncreaseScore(Value);
-        }
+
         Destroy(gameObject);
     }
 }
-    
