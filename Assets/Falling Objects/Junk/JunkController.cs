@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class JunkController : MonoBehaviour
 {
+    [Header("Damage")]
+    [SerializeField] int junkDamage;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-        }
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(junkDamage);
+
+        Destroy(gameObject);
     }
 }
