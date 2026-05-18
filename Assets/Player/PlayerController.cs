@@ -11,14 +11,7 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private float moveInput;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
 
-        inputActions = new PlayerInputActions();
-        moveAction = inputActions.Player.Move;
-    }
-    
     private void OnEnable()
     {
         inputActions.Player.Enable();
@@ -38,6 +31,14 @@ public class PlayerController : MonoBehaviour
         moveInput = ctx.ReadValue<float>();
     }
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        inputActions = new PlayerInputActions();
+        moveAction = inputActions.Player.Move;
+    }
+    
     private void FixedUpdate()
     {
         Vector3 velocity = rb.linearVelocity;
@@ -45,4 +46,6 @@ public class PlayerController : MonoBehaviour
 
         rb.linearVelocity = velocity;
     }
+
+   
 }
