@@ -8,7 +8,6 @@ public class JunkController : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-
-        Destroy(gameObject);
+            Destroy(gameObject);
     }
 }
