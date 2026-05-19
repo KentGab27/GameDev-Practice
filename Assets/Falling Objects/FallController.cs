@@ -1,22 +1,30 @@
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class FallController : MonoBehaviour
 {
-    [Header("Fall Settings")]
-    [SerializeField] private float FallSpeed;
-    [SerializeField] private GameObject[] FallingObjects;
+    [Header("Spawn Settings")]
+    [SerializeField] private float SpawnInterval = 1.5f;
+    [SerializeField] private float SpawnHeightOffset = 1f;
+    [SerializeField] private ObjectPool[] FallingObjectPools;
 
-    void Start()
+    private Camera _cam;
+
+    private void Start()
     {
-        InvokeRepeating("Fall", FallSpeed, FallSpeed);
+        _cam = Camera.main;
+        InvokeRepeating(nameof(Spawn), SpawnInterval, SpawnInterval);
     }
 
-    void Fall()
+    private void Spawn()
     {
-        if (FallingObjects == null || FallingObjects.Length == 0) return;
+        if (FallingObjectPools == null || FallingObjectPools.Length == 0) return;
 
-        GameObject prefab = FallingObjects[Random.Range(0, FallingObjects.Length)];
-        Instantiate(prefab, new Vector3(Random.Range(-10, 10), 10, 0), Quaternion.identity); 
+        ObjectPool pool = FallingObjectPools[Random.Range(0, FallingObjectPools.Length)];
+
+        float spawnY = _cam.ViewportToWorldPoint(new Vector3(0f, 1f, _cam.nearClipPlane)).y + SpawnHeightOffset;
+        float leftX = _cam.ViewportToWorldPoint(new Vector3(0f, 0f, _cam.nearClipPlane)).x;
+        float rightX = _cam.ViewportToWorldPoint(new Vector3(1f, 0f, _cam.nearClipPlane)).x;
+
+        pool.Get(new Vector3(Random.Range(leftX, rightX), spawnY, 0f), Quaternion.identity);
     }
 }
