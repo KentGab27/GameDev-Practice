@@ -1,57 +1,31 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int health;
-    [SerializeField] int maxHealth;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int currentHealth;
 
-    public Sprite EmptyHeart;
-    public Sprite FullHeart;
-    public Image[] Hearts;
-
-    public SpriteRenderer PlayerSpriteRender;
-    public PlayerController PlayerMovement;
-
-    public PlayerHealth PlayHealth;
-
-    public void TakeDamage(int amount)
-    {
-        health -= amount;
-        if(health <= 0)
-        {
-            PlayerSpriteRender.enabled = false;
-            PlayerMovement.enabled = false;
-        }
-    }
+    public HealthUI HealthUI;
 
     void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
+        HealthUI.SetMaxHearts(maxHealth);
     }
 
-    void Update()
+    public void TakeDamage(int amount)
     {
+        currentHealth = Mathf.Max(currentHealth - amount, 0);
+        HealthUI.UpdateHearts(currentHealth);
 
-        for (int i = 0; i < Hearts.Length; i++)
-        {
-            if (i < health)
-            {
-                Hearts[i].sprite = FullHeart;
-            }
-            else
-            {
-                Hearts[i].sprite = EmptyHeart;
-            }
+        if (currentHealth <= 0)
+            Die();
+    }
 
-            if (i < maxHealth)
-            {
-                Hearts[i].enabled = true;
-            }
-            else
-            {
-                Hearts[i].enabled = false;
-            }
-        }
+    private void Die()
+    {
+        Destroy(this.gameObject);
+        Time.timeScale = 0f;
+        Debug.Log("Player died.");
     }
 }
