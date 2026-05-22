@@ -4,46 +4,63 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] float moveSpeed;
 
-    private Rigidbody2D rb;
-    private PlayerInputActions inputActions;
-    private InputAction moveAction;
-    private float moveInput;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] PlayerInputActions inputActions;
+    [SerializeField] InputAction moveAction;
+    [SerializeField] float moveInput;
 
+    [SerializeField] Animator animator;
+    static readonly int isMovingHash = Animator.StringToHash("isMoving");
 
-    private void OnEnable()
+     void OnEnable()
     {
         inputActions.Player.Enable();
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
     }
 
-    private void OnDisable()
+     void OnDisable()
     {
         inputActions.Player.Disable();
         moveAction.performed -= OnMove;
         moveAction.canceled -= OnMove;
     }
 
-    private void OnMove(InputAction.CallbackContext ctx)
+     void OnMove(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<float>();
     }
 
-    private void Awake()
+     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         inputActions = new PlayerInputActions();
         moveAction = inputActions.Player.Move;
     }
     
-    private void FixedUpdate()
+     void FixedUpdate()
     {
         Vector3 velocity = rb.linearVelocity;
         velocity.x = moveInput * moveSpeed;
 
         rb.linearVelocity = velocity;
+
+        UpdateAnimation();
+    }
+
+    void UpdateAnimation()
+    {
+        animator.SetBool(isMovingHash, moveInput != 0f);
+
+        if(moveInput != 0f)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Sign(moveInput) * Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
     }
 }

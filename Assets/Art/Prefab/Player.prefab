@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5126018728913347463}
   - component: {fileID: 6290578855975044999}
-  - component: {fileID: 2319506219872315396}
+  - component: {fileID: 5008603286668348705}
   - component: {fileID: 1419647246336893352}
   - component: {fileID: 325872452113231768}
   - component: {fileID: 5312735037181853728}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 10
---- !u!114 &2319506219872315396
+--- !u!114 &5008603286668348705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,17 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95604f86b60a064d920c51dd677b276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 3
   maxHealth: 3
-  EmptyHeart: {fileID: 4458994651616342869, guid: 89a61318cfef3d44f8a7129ac9aeb896, type: 3}
-  FullHeart: {fileID: 9139294957729004389, guid: 89a61318cfef3d44f8a7129ac9aeb896, type: 3}
-  Hearts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  PlayerSpriteRender: {fileID: 1419647246336893352}
-  PlayerMovement: {fileID: 6290578855975044999}
-  PlayHealth: {fileID: 2319506219872315396}
+  currentHealth: 3
+  HealthUI: {fileID: 0}
 --- !u!212 &1419647246336893352
 SpriteRenderer:
   serializedVersion: 2
