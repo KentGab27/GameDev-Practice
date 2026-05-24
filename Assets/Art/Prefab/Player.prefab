@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 10
+  moveInput: 0
 --- !u!114 &5008603286668348705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,7 @@ MonoBehaviour:
   maxHealth: 3
   currentHealth: 3
   HealthUI: {fileID: 0}
+  flashDuration: 0
 --- !u!212 &1419647246336893352
 SpriteRenderer:
   serializedVersion: 2
@@ -138,7 +140,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

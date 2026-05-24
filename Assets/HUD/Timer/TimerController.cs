@@ -1,19 +1,32 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 
 public class TimerController : MonoBehaviour
 {
     [Header("Time Settings")]
-    [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float remainingTime;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private float duration = 80f;
 
-    void Update()
+    private float elapsedTime;
+
+    public float RemainingTime => Mathf.Max(0f, duration - elapsedTime);
+
+    public float TimeProgress
     {
-        remainingTime -= Time.deltaTime;
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
+        get
+        {
+            if (duration <= 0f) return 1f;
+            return Mathf.Clamp01(elapsedTime / duration);
+        }
+    }
+
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime;
+
+        int minutes = Mathf.FloorToInt(RemainingTime / 60);
+        int seconds = Mathf.FloorToInt(RemainingTime % 60);
+
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
