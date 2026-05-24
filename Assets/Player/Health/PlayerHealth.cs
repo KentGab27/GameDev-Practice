@@ -1,31 +1,48 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int currentHealth;
+    [Header("Health Settings")]
+    [SerializeField] int maxHealth;
+    [SerializeField] int currentHealth;
+    [SerializeField] public HealthUI HealthUI;
 
-    public HealthUI HealthUI;
+    [Header("Flash Settings")]
+    [SerializeField] float flashDuration;
 
-    void Start()
-    {
-        currentHealth = maxHealth;
-        HealthUI.SetMaxHearts(maxHealth);
-    }
+    private SpriteRenderer spriteRender;
 
+   
     public void TakeDamage(int amount)
     {
         currentHealth = Mathf.Max(currentHealth - amount, 0);
         HealthUI.UpdateHearts(currentHealth);
 
+        StartCoroutine(FlashRed());
+
         if (currentHealth <= 0)
             Die();
     }
 
-    private void Die()
+    void Start()
+    {
+        spriteRender = GetComponent<SpriteRenderer>();
+        currentHealth = maxHealth;
+        HealthUI.SetMaxHearts(maxHealth);
+    }
+
+    void Die()
     {
         Destroy(this.gameObject);
         Time.timeScale = 0f;
         Debug.Log("Player died.");
+    }
+
+    private IEnumerator FlashRed()
+    {
+        spriteRender.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRender.color = Color.white;
     }
 }
