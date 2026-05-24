@@ -3,20 +3,20 @@ using UnityEngine;
 public class JunkController : MonoBehaviour, IPoolable
 {
     [Header("Damage")]
-    [SerializeField] private int JunkDamage;
+    [SerializeField] int junkDamage;
 
-    private ObjectPool _pool;
+    private ObjectPool pooling;
 
     public void OnSpawn() { }
     public void OnReturn() { }
 
-    public void Init(ObjectPool pool) => _pool = pool;
+    public void Init(ObjectPool pool) => pooling = pool;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            collision.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(JunkDamage);
+            collision.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(junkDamage);
 
-        _pool?.Return(gameObject);
+        pooling?.Return(gameObject);
     }
 }

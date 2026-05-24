@@ -3,20 +3,20 @@ using UnityEngine;
 public class FoodController : MonoBehaviour, IPoolable
 {
     [Header("Point Value")]
-    [SerializeField] private int Value;
+    [SerializeField] int value;
 
-    private ObjectPool _pool;
+    private ObjectPool pooling;
 
     public void OnSpawn() { }
     public void OnReturn() { }
 
-    public void Init(ObjectPool pool) => _pool = pool;
+    public void Init(ObjectPool pool) => pooling = pool;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            ScoreCounter.Instance.IncreaseScore(Value);
+            ScoreCounter.Instance.IncreaseScore(value);
 
-        _pool?.Return(gameObject);
+        pooling?.Return(gameObject);
     }
 }

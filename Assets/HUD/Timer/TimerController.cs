@@ -4,8 +4,8 @@ using TMPro;
 public class TimerController : MonoBehaviour
 {
     [Header("Time Settings")]
-    [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private float duration = 80f;
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] float duration = 80f;
 
     private float elapsedTime;
 
@@ -20,7 +20,7 @@ public class TimerController : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         elapsedTime += Time.deltaTime;
 

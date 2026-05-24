@@ -15,26 +15,26 @@ public class PlayerController : MonoBehaviour
 
     static readonly int isMovingHash = Animator.StringToHash("isMoving");
 
-     void OnEnable()
+    void OnEnable()
     {
         inputActions.Player.Enable();
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
     }
 
-     void OnDisable()
+    void OnDisable()
     {
         inputActions.Player.Disable();
         moveAction.performed -= OnMove;
         moveAction.canceled -= OnMove;
     }
 
-     void OnMove(InputAction.CallbackContext ctx)
+    void OnMove(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<float>();
     }
 
-     void Awake()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         moveAction = inputActions.Player.Move;
     }
     
-     void FixedUpdate()
+    void FixedUpdate()
     {
         Vector3 velocity = rb.linearVelocity;
         velocity.x = moveInput * moveSpeed;
