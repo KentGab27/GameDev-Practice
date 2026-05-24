@@ -6,12 +6,13 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float moveSpeed;
 
-    [SerializeField] Rigidbody2D rb;
     [SerializeField] PlayerInputActions inputActions;
-    [SerializeField] InputAction moveAction;
     [SerializeField] float moveInput;
 
-    [SerializeField] Animator animator;
+    private InputAction moveAction;
+    private Rigidbody2D rb;
+    private Animator animator;
+
     static readonly int isMovingHash = Animator.StringToHash("isMoving");
 
      void OnEnable()
