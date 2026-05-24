@@ -453,11 +453,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a266fc2c667ca734fb96fbf466f0e98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallController
-  SpawnInterval: 1.5
-  SpawnHeightOffset: 1
-  FallingObjectPools:
-  - {fileID: 1592629637}
+  startSpawnInterval: 1.5
+  endSpawnInterval: 0.4
+  spawnHeightOffset: 1
+  startObjectsPerSpawn: 1
+  endObjectsPerSpawn: 3
+  startGravityScale: 0.3
+  endGravityScale: 1
+  timer: {fileID: 747025694}
+  fallingObjectPools:
   - {fileID: 1211238105}
+  - {fileID: 1592629637}
 --- !u!1 &747025690
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerController
   timerText: {fileID: 747025692}
-  remainingTime: 80
+  duration: 80
 --- !u!1 &831904589
 GameObject:
   m_ObjectHideFlags: 0
