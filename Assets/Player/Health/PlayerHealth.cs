@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("Flash Settings")]
     [SerializeField] float flashDuration;
 
+    [SerializeField] ScoreScreenDisplay scoreScreenDisplay;
+
     private SpriteRenderer spriteRender;
 
    
@@ -34,8 +36,13 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Destroy(this.gameObject);
+        int score = ScoreCounter.Instance != null ? ScoreCounter.Instance.CurrentScore : 0;
+
+        scoreScreenDisplay.Setup(score);
+
         Time.timeScale = 0f;
+        gameObject.SetActive(false);
+
         Debug.Log("Player died.");
     }
 
