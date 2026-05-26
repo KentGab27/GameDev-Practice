@@ -17,7 +17,7 @@ public class ScoreScreenDisplay : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        PointsText.text = ("Score: ") + maxScore;
+        PointsText.text = ("Score: ") + score;
     }
 
     public void Retry()
