@@ -3,7 +3,7 @@ using UnityEngine;
 public class FoodController : MonoBehaviour, IPoolable
 {
     [Header("Point Value")]
-    [SerializeField] int value;
+    [SerializeField] int Value;
 
     private ObjectPool pooling;
 
@@ -15,7 +15,7 @@ public class FoodController : MonoBehaviour, IPoolable
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            ScoreCounter.Instance.IncreaseScore(value);
+            ScoreCounter.Instance.IncreaseScore(Value);
 
         pooling?.Return(gameObject);
     }

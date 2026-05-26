@@ -3,7 +3,7 @@ using UnityEngine;
 public class JunkController : MonoBehaviour, IPoolable
 {
     [Header("Damage")]
-    [SerializeField] int junkDamage;
+    [SerializeField] int JunkDamage;
 
     private ObjectPool pooling;
 
@@ -15,7 +15,7 @@ public class JunkController : MonoBehaviour, IPoolable
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            collision.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(junkDamage);
+            collision.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(JunkDamage);
 
         pooling?.Return(gameObject);
     }
