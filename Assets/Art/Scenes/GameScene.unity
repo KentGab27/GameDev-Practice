@@ -885,7 +885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerController
   timerText: {fileID: 747025692}
-  duration: 80
+  duration: 5
+  scoreScreenDisplay: {fileID: 857777343}
 --- !u!1 &831904589
 GameObject:
   m_ObjectHideFlags: 0
