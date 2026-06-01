@@ -45,9 +45,9 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        Vector3 velocity = rb.linearVelocity;
+        Vector2 velocity = rb.linearVelocity;
         velocity.x = moveInput * moveSpeed;
-
+        velocity.y = 0f;
         rb.linearVelocity = velocity;
 
         UpdateAnimation();
