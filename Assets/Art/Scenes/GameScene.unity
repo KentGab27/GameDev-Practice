@@ -885,7 +885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerController
   timerText: {fileID: 747025692}
-  duration: 5
+  duration: 120
   scoreScreenDisplay: {fileID: 857777343}
 --- !u!1 &831904589
 GameObject:
@@ -2162,11 +2162,11 @@ PrefabInstance:
       objectReference: {fileID: 857777343}
     - target: {fileID: 5126018728913347463, guid: 10cf6f548c9678547b2bce7412bebfe6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 5126018728913347463, guid: 10cf6f548c9678547b2bce7412bebfe6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.59
+      value: -3.38
       objectReference: {fileID: 0}
     - target: {fileID: 5126018728913347463, guid: 10cf6f548c9678547b2bce7412bebfe6, type: 3}
       propertyPath: m_LocalPosition.z
