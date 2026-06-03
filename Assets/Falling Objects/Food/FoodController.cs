@@ -15,7 +15,10 @@ public class FoodController : MonoBehaviour, IPoolable
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+        {
             ScoreCounter.Instance.IncreaseScore(Value);
+            AudioSoundManager.Instance?.PlayCollectSound();
+        }
 
         pooling?.Return(gameObject);
     }

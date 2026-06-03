@@ -11,20 +11,27 @@ public class PlayerHealth : MonoBehaviour
     [Header("Flash Settings")]
     [SerializeField] float flashDuration;
 
+    [Header("Audio Settings")]
+    [SerializeField] AudioClip damageSoundClip;
+
     [SerializeField] ScoreScreenDisplay scoreScreenDisplay;
 
     private SpriteRenderer spriteRender;
-
+    private AudioSource audioSource;
    
     public void TakeDamage(int amount)
     {
         currentHealth = Mathf.Max(currentHealth - amount, 0);
         HealthUI.UpdateHearts(currentHealth);
 
+        AudioSoundManager.Instance?.PlayHurtSound();
+
         StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
+        {
             Die();
+        }      
     }
 
     void Start()
@@ -36,14 +43,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        AudioSoundManager.Instance?.PlayLoseSound();
+
         int score = ScoreCounter.Instance != null ? ScoreCounter.Instance.CurrentScore : 0;
 
         scoreScreenDisplay.Setup(score);
 
         Time.timeScale = 0f;
         gameObject.SetActive(false);
-
-        Debug.Log("Player died.");
     }
 
     private IEnumerator FlashRed()
