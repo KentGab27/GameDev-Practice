@@ -7,4 +7,4 @@ How to Play:
 - Press A to move left and D to move right
 - Avoid sawblades and collect apples until timer runs out
 
-Pixel art Asset credits:
+Pixel art asset credits:
