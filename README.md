@@ -7,4 +7,7 @@ How to Play:
 - Press A to move left and D to move right
 - Avoid sawblades and collect apples until timer runs out
 
-Pixel art asset credits:
+Credits:
+Heart pixel art by Nicole Marie T
+Sawblades pixel art by creativecommons
+Tilemaps and character pixel art by hipixelfrog
